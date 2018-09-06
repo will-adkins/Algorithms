@@ -1,6 +1,16 @@
-///////////////////////
-// FizzBuzz Challenge
-//////////////////////
+// --- Directions
+// Write a program that console logs the numbers
+// from 1 to n. But for multiples of three print
+// “fizz” instead of the number and for the multiples
+// of five print “buzz”. For numbers which are multiples
+// of both three and five print “fizzbuzz”.
+// --- Example
+//   fizzBuzz(5);
+//   1
+//   2
+//   fizz
+//   4
+//   buzz
 
 const Fizzbuzz = () => {
   const arr = []
@@ -27,6 +37,7 @@ const fizzBuzz = n => {
     map(n => n + 1)
   )([...Array(n).keys()])
 }
+// R.range(1,n)
 
 // --- Directions
 // Given a string, return a new string with the reversed
@@ -130,4 +141,39 @@ function isAnagram(str1, str2) {
     }
   }
   return isAnagram
+}
+
+// --- Directions
+// Given an array and chunk size, divide the array into many subarrays
+// where each subarray is of length size
+// --- Examples
+// chunk([1, 2, 3, 4], 2) --> [[ 1, 2], [3, 4]]
+// chunk([1, 2, 3, 4, 5], 2) --> [[ 1, 2], [3, 4], [5]]
+// chunk([1, 2, 3, 4, 5, 6, 7, 8], 3) --> [[ 1, 2, 3], [4, 5, 6], [7, 8]]
+// chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
+// chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
+
+function chunk(arr, c) {
+  let result = []
+  let piece = []
+
+  for (let n of arr) {
+    if (n === arr[arr.length - 1]) {
+      if (piece.length >= c) {
+        result.push(piece)
+        piece = []
+        piece.push(n)
+      } else {
+        piece.push(n)
+      }
+      result.push(piece)
+    } else if (piece.length < c) {
+      piece.push(n)
+    } else if (piece.length >= c) {
+      result.push(piece)
+      piece = []
+      piece.push(n)
+    }
+  }
+  return result
 }
