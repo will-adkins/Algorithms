@@ -30,6 +30,8 @@ function reverse(str) {
   debugger
   return str.split('').reduce((acc, char) => char + acc, '')
 }
+// or .split('').reverse().join('')
+// or the imperative way for length - 1 to 0, str = char + str
 
 // --- Directions
 // Given a string, return true if the string is a palindrome
