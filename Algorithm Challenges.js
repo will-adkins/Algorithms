@@ -18,6 +18,16 @@ const Fizzbuzz = () => {
   return arr
 }
 
+const fizzBuzz = n => {
+  const fb = n =>
+    n % 15 === 0 ? 'fizzbuzz' : n % 3 === 0 ? 'fizz' : n % 5 === 0 ? 'buzz' : n
+
+  return compose(
+    map(fb),
+    map(n => n + 1)
+  )([...Array(n).keys()])
+}
+
 // --- Directions
 // Given a string, return a new string with the reversed
 // order of characters
