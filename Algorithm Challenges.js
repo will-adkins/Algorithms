@@ -177,3 +177,10 @@ function chunk(arr, c) {
   }
   return result
 }
+
+const chunk = (arr, chunksize) =>
+  arr.reduce(
+    (a, b, index, g) =>
+      !(index % chunksize) ? a.concat([g.slice(index, index + chunksize)]) : a,
+    []
+  )
