@@ -155,25 +155,12 @@ function isAnagram(str1, str2) {
 
 function chunk(arr, c) {
   let result = []
-  let piece = []
 
-  for (let n of arr) {
-    if (n === arr[arr.length - 1]) {
-      if (piece.length >= c) {
-        result.push(piece)
-        piece = []
-        piece.push(n)
-      } else {
-        piece.push(n)
-      }
-      result.push(piece)
-    } else if (piece.length < c) {
-      piece.push(n)
-    } else if (piece.length >= c) {
-      result.push(piece)
-      piece = []
-      piece.push(n)
-    }
+  for (let element of arr) {
+    const last = result[result.length - 1]
+
+    if (!last || last.length === c) result.push([element])
+    else last.push(element)
   }
   return result
 }
