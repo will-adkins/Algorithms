@@ -171,3 +171,43 @@ const chunk = (arr, chunksize) =>
       !(index % chunksize) ? a.concat([g.slice(index, index + chunksize)]) : a,
     []
   )
+
+// --- Directions
+// Check to see if two provided strings are anagrams of eachother.
+// One string is an anagram of another if it uses the same characters
+// in the same quantity. Only consider characters, not spaces
+// or punctuation.  Consider capital letters to be the same as lower case
+// --- Examples
+//   anagrams('rail safety', 'fairy tales') --> True
+//   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
+//   anagrams('Hi there', 'Bye there') --> False
+
+function anagrams(stringA, stringB) {
+  const str1 = stringA.replace(/[^\w]/g, '').toLowerCase()
+  const str2 = stringB.replace(/[^\w]/g, '').toLowerCase()
+
+  let charMap1 = {}
+  let charMap2 = {}
+
+  for (let char of str1) charMap1[char] = charMap1[char] + 1 || 1
+  for (let char of str2) charMap2[char] = charMap2[char] + 1 || 1
+
+  if (Object.keys(charMap1).length !== Object.keys(charMap2).length)
+    return false
+
+  for (let key in charMap1) {
+    if (charMap1[key] !== charMap2[key]) return false
+  }
+  return true
+} // make helper function to buildCharMap (replace logic in for loop)
+
+const anagramsSort = (stringA, stringB) => {
+  const cleanStr = str =>
+    str
+      .replace(/[^\w]/g, '')
+      .toLowerCase()
+      .split('')
+      .sort()
+      .join('')
+  return cleanStr(stringA) === cleanStr(stringB)
+}
